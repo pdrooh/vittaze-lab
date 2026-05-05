@@ -16,6 +16,9 @@
     "lucide-react": "^0.383.0",
     "clsx": "^2.1.0"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
