@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import { MapPin, Clock, Phone, Instagram, Facebook, MessageCircle, Mail } from 'lucide-react'
+import { motion } from 'framer-motion'
+import FadeIn, { StaggerGroup, StaggerItem } from './FadeIn'
 
 const hours = [
   { day: 'Segunda a Sexta', time: '07h00 – 17h00' },
@@ -10,136 +11,97 @@ const hours = [
 ]
 
 const contacts = [
-  {
-    icon: MessageCircle,
-    label: 'WhatsApp',
-    value: '(00) 00000-0000',
-    href: 'https://wa.me/5500000000000',
-    primary: true,
-  },
-  {
-    icon: Phone,
-    label: 'Telefone',
-    value: '(00) 0000-0000',
-    href: 'tel:0000000000',
-    primary: false,
-  },
-  {
-    icon: Mail,
-    label: 'E-mail',
-    value: 'contato@vittazelab.com.br',
-    href: 'mailto:contato@vittazelab.com.br',
-    primary: false,
-  },
+  { icon: MessageCircle, label: 'WhatsApp', value: '(00) 00000-0000', href: 'https://wa.me/5500000000000', primary: true },
+  { icon: Phone,         label: 'Telefone', value: '(00) 0000-0000',  href: 'tel:0000000000',              primary: false },
+  { icon: Mail,          label: 'E-mail',   value: 'contato@vittazelab.com.br', href: 'mailto:contato@vittazelab.com.br', primary: false },
 ]
 
 export default function Contato() {
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal').forEach((el) => {
-              el.classList.add('visible')
-            })
-          }
-        })
-      },
-      { threshold: 0.08 }
-    )
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section
-      id="contato"
-      className="relative bg-vit-preto section-padding overflow-hidden"
-      ref={sectionRef}
-    >
-      {/* Background glow */}
+    <section id="contato" className="relative bg-vit-preto section-padding overflow-hidden">
       <div className="absolute bottom-0 left-0 w-[60vw] h-[40vw] bg-vit-taupe/8 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute top-0 right-0 w-[40vw] h-[30vw] bg-vit-cinza/10 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
-          <p className="reveal eyebrow text-vit-taupe mb-4">Fale conosco</p>
-          <h2 className="reveal reveal-delay-1 heading-lg text-vit-white">
-            Estamos aqui{' '}
-            <span className="font-heading italic gradient-text">para você</span>
-          </h2>
+          <FadeIn><p className="eyebrow text-vit-taupe mb-4">Fale conosco</p></FadeIn>
+          <FadeIn delay={0.1}>
+            <h2 className="heading-lg text-vit-white">
+              Estamos aqui{' '}
+              <span className="font-heading italic gradient-text">para você</span>
+            </h2>
+          </FadeIn>
         </div>
 
         {/* Main grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* Contacts */}
-          <div className="reveal lg:col-span-1 flex flex-col gap-4">
-            <h3 className="font-heading text-xl font-light text-vit-white mb-2">
+          <FadeIn direction="left" className="lg:col-span-1 flex flex-col gap-4">
+            <h3 className="font-heading text-xl font-light text-vit-white mb-1">
               Canais de atendimento
             </h3>
             {contacts.map((c) => {
               const Icon = c.icon
               return (
-                <a
+                <motion.a
                   key={c.label}
                   href={c.href}
                   target={c.href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className={`group flex items-center gap-4 rounded-2xl p-5 transition-all duration-300 ${
+                  className={`group flex items-center gap-4 rounded-2xl p-5 transition-colors duration-300 ${
                     c.primary
-                      ? 'bg-vit-taupe/20 border border-vit-taupe/30 hover:bg-vit-taupe/30'
-                      : 'glass hover:border-vit-taupe/30'
+                      ? 'bg-vit-taupe/20 border border-vit-taupe/30'
+                      : 'glass'
                   }`}
+                  whileHover={{ x: 4 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 22 }}
                 >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300 ${
-                    c.primary ? 'bg-vit-taupe/30 group-hover:bg-vit-taupe/50' : 'bg-vit-white/5 group-hover:bg-vit-taupe/20'
-                  }`}>
+                  <motion.div
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                      c.primary ? 'bg-vit-taupe/30' : 'bg-vit-white/5'
+                    }`}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 400 }}
+                  >
                     <Icon size={18} strokeWidth={1.5} className={c.primary ? 'text-vit-bege' : 'text-vit-taupe'} />
-                  </div>
+                  </motion.div>
                   <div>
-                    <p className="font-body text-xs tracking-widest uppercase text-vit-taupe/60 mb-0.5">
-                      {c.label}
-                    </p>
-                    <p className="font-body text-sm text-vit-white/80 group-hover:text-vit-white transition-colors">
-                      {c.value}
-                    </p>
+                    <p className="font-body text-xs tracking-widest uppercase text-vit-taupe/60 mb-0.5">{c.label}</p>
+                    <p className="font-body text-sm text-vit-white/80">{c.value}</p>
                   </div>
                   {c.primary && (
-                    <span className="ml-auto font-body text-xs tracking-widest uppercase text-vit-taupe/60">
-                      Online ↗
-                    </span>
+                    <span className="ml-auto font-body text-xs tracking-widest uppercase text-vit-taupe/60">Online ↗</span>
                   )}
-                </a>
+                </motion.a>
               )
             })}
-          </div>
+          </FadeIn>
 
           {/* Location */}
-          <div className="reveal reveal-delay-1 card-dark rounded-2xl p-8 flex flex-col gap-6">
+          <FadeIn delay={0.1} className="card-dark rounded-2xl p-8 flex flex-col gap-6">
             <div className="flex items-center gap-3">
               <MapPin size={18} strokeWidth={1.5} className="text-vit-taupe" />
-              <h3 className="font-heading text-xl font-light text-vit-white">
-                Nossa localização
-              </h3>
+              <h3 className="font-heading text-xl font-light text-vit-white">Nossa localização</h3>
             </div>
-            {/* Mock map placeholder */}
             <div className="rounded-xl overflow-hidden bg-vit-preto/50 border border-vit-taupe/15 h-40 flex items-center justify-center relative">
               <div className="absolute inset-0 opacity-20"
                 style={{
                   backgroundImage: `repeating-linear-gradient(0deg, #655C55 0px, #655C55 1px, transparent 1px, transparent 40px),
-                    repeating-linear-gradient(90deg, #655C55 0px, #655C55 1px, transparent 1px, transparent 40px)`
+                    repeating-linear-gradient(90deg, #655C55 0px, #655C55 1px, transparent 1px, transparent 40px)`,
                 }}
               />
-              <div className="relative flex flex-col items-center gap-2">
-                <div className="w-8 h-8 bg-vit-taupe rounded-full flex items-center justify-center">
+              <motion.div
+                className="relative flex flex-col items-center gap-2"
+                animate={{ y: [0, -4, 0] }}
+                transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
+              >
+                <div className="w-8 h-8 bg-vit-taupe rounded-full flex items-center justify-center shadow-premium">
                   <MapPin size={16} className="text-vit-white" />
                 </div>
                 <span className="font-body text-xs text-vit-white/50">Vittaze Lab</span>
-              </div>
+              </motion.div>
             </div>
             <div>
               <p className="font-body text-sm text-vit-white/70 leading-relaxed">
@@ -147,89 +109,92 @@ export default function Contato() {
                 Bairro Nobre, Cidade — Estado<br />
                 CEP 00000-000
               </p>
-              <a
-                href="https://maps.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 font-body text-xs tracking-widest uppercase text-vit-taupe hover:text-vit-bege transition-colors"
-              >
+              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-2 font-body text-xs tracking-widest uppercase text-vit-taupe hover:text-vit-bege transition-colors">
                 Ver no mapa ↗
               </a>
             </div>
-          </div>
+          </FadeIn>
 
           {/* Hours + Social */}
-          <div className="reveal reveal-delay-2 flex flex-col gap-4">
-            {/* Hours */}
+          <FadeIn delay={0.15} direction="right" className="flex flex-col gap-4">
             <div className="card-dark rounded-2xl p-7 flex flex-col gap-4 flex-1">
               <div className="flex items-center gap-3">
                 <Clock size={18} strokeWidth={1.5} className="text-vit-taupe" />
-                <h3 className="font-heading text-xl font-light text-vit-white">
-                  Horários
-                </h3>
+                <h3 className="font-heading text-xl font-light text-vit-white">Horários</h3>
               </div>
-              <div className="flex flex-col gap-3">
+              <StaggerGroup stagger={0.08} className="flex flex-col gap-3">
                 {hours.map(({ day, time }) => (
-                  <div key={day} className="flex justify-between items-center py-2 border-b border-vit-white/5 last:border-0">
-                    <span className="font-body text-sm text-vit-white/55">{day}</span>
-                    <span className={`font-body text-sm font-medium ${time === 'Fechado' ? 'text-vit-taupe/50' : 'text-vit-bege'}`}>
-                      {time}
-                    </span>
-                  </div>
+                  <StaggerItem key={day}>
+                    <div className="flex justify-between items-center py-2 border-b border-vit-white/5 last:border-0">
+                      <span className="font-body text-sm text-vit-white/55">{day}</span>
+                      <span className={`font-body text-sm font-medium ${time === 'Fechado' ? 'text-vit-taupe/50' : 'text-vit-bege'}`}>
+                        {time}
+                      </span>
+                    </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
             </div>
 
-            {/* Social */}
             <div className="card-dark rounded-2xl p-6 flex flex-col gap-4">
               <p className="eyebrow text-vit-taupe">Redes sociais</p>
               <div className="flex gap-3">
                 {[
                   { icon: Instagram, href: 'https://instagram.com/vittazelab', label: 'Instagram' },
-                  { icon: Facebook,  href: 'https://facebook.com/vittazelab', label: 'Facebook' },
+                  { icon: Facebook,  href: 'https://facebook.com/vittazelab',  label: 'Facebook'  },
                 ].map(({ icon: Icon, href, label }) => (
-                  <a
+                  <motion.a
                     key={label}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="group w-12 h-12 rounded-xl glass flex items-center justify-center hover:border-vit-taupe/40 hover:bg-vit-taupe/10 transition-all duration-300"
+                    className="w-12 h-12 rounded-xl glass flex items-center justify-center"
+                    whileHover={{ scale: 1.12, rotate: 5, borderColor: 'rgba(160,149,140,0.5)' }}
+                    whileTap={{ scale: 0.93 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 15 }}
                   >
-                    <Icon size={18} strokeWidth={1.5} className="text-vit-taupe group-hover:text-vit-bege transition-colors duration-300" />
-                  </a>
+                    <Icon size={18} strokeWidth={1.5} className="text-vit-taupe hover:text-vit-bege transition-colors" />
+                  </motion.a>
                 ))}
               </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
 
         {/* Big WhatsApp CTA */}
-        <div className="reveal mt-12">
-          <a
+        <FadeIn delay={0.1} className="mt-12">
+          <motion.a
             href="https://wa.me/5500000000000"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl bg-gradient-to-r from-vit-taupe/20 to-vit-cinza/20 border border-vit-taupe/20 hover:border-vit-taupe/40 p-8 transition-all duration-300 hover:bg-vit-taupe/15"
+            className="group flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl bg-gradient-to-r from-vit-taupe/20 to-vit-cinza/20 border border-vit-taupe/20 p-8"
+            whileHover={{ y: -3 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 25 }}
           >
             <div className="flex items-center gap-5">
-              <div className="w-14 h-14 rounded-2xl bg-vit-taupe/25 flex items-center justify-center group-hover:bg-vit-taupe/40 transition-colors duration-300">
+              <motion.div
+                className="w-14 h-14 rounded-2xl bg-vit-taupe/25 flex items-center justify-center"
+                whileHover={{ scale: 1.1, rotate: 8 }}
+                transition={{ type: 'spring', stiffness: 400 }}
+              >
                 <MessageCircle size={26} strokeWidth={1.5} className="text-vit-bege" />
-              </div>
+              </motion.div>
               <div>
-                <p className="font-heading text-xl text-vit-white font-light">
-                  Prefere pelo WhatsApp?
-                </p>
-                <p className="font-body text-sm text-vit-white/50">
-                  Atendimento rápido e personalizado para tirar todas as suas dúvidas.
-                </p>
+                <p className="font-heading text-xl text-vit-white font-light">Prefere pelo WhatsApp?</p>
+                <p className="font-body text-sm text-vit-white/50">Atendimento rápido e personalizado.</p>
               </div>
             </div>
-            <span className="btn-taupe shrink-0">
+            <motion.span
+              className="btn-taupe shrink-0"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+            >
               Iniciar conversa
-            </span>
-          </a>
-        </div>
+            </motion.span>
+          </motion.a>
+        </FadeIn>
       </div>
     </section>
   )

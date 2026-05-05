@@ -17,6 +17,13 @@
     scroll-behavior: smooth;
   }
 
+  /* Hide native cursor on desktop so custom cursor takes over */
+  @media (pointer: fine) {
+    *, *::before, *::after {
+      cursor: none !important;
+    }
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -163,18 +170,35 @@
 .reveal-delay-4 { transition-delay: 0.4s; }
 .reveal-delay-5 { transition-delay: 0.5s; }
 
-/* ─── DNA helix animation ────────────────────────────────────── */
-@keyframes dnaStrand1 {
-  0%   { d: path("M 50,10 C 90,40 10,70 50,100 C 90,130 10,160 50,190 C 90,220 10,250 50,280 C 90,310 10,340 50,370 C 90,400 10,430 50,460 C 90,490 10,520 50,550"); }
-  50%  { d: path("M 50,10 C 10,40 90,70 50,100 C 10,130 90,160 50,190 C 10,220 90,250 50,280 C 10,310 90,340 50,370 C 10,400 90,430 50,460 C 10,490 90,520 50,550"); }
-  100% { d: path("M 50,10 C 90,40 10,70 50,100 C 90,130 10,160 50,190 C 90,220 10,250 50,280 C 90,310 10,340 50,370 C 90,400 10,430 50,460 C 90,490 10,520 50,550"); }
+/* ─── CSS particle float keyframes (compositor-thread, zero jank) ── */
+/* Each variant drifts in a different direction — assigned randomly  */
+@keyframes pFloat0 {
+  0%,100% { transform: translate(0px, 0px); }
+  33%     { transform: translate(-12px, -18px); }
+  66%     { transform: translate(8px,  -10px); }
+}
+@keyframes pFloat1 {
+  0%,100% { transform: translate(0px, 0px); }
+  33%     { transform: translate(14px, -16px); }
+  66%     { transform: translate(-6px, -22px); }
+}
+@keyframes pFloat2 {
+  0%,100% { transform: translate(0px, 0px); }
+  33%     { transform: translate(-10px, 14px); }
+  66%     { transform: translate(16px,  6px); }
+}
+@keyframes pFloat3 {
+  0%,100% { transform: translate(0px, 0px); }
+  33%     { transform: translate(12px, 18px); }
+  66%     { transform: translate(-8px, 10px); }
+}
+@keyframes pFloat4 {
+  0%,100% { transform: translate(0px, 0px); }
+  33%     { transform: translate(-18px, -6px); }
+  66%     { transform: translate(10px, 14px); }
 }
 
-@keyframes dnaFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33%      { transform: translateY(-15px) rotate(1deg); }
-  66%      { transform: translateY(8px) rotate(-1deg); }
-}
+/* ─── DNA helix animation ────────────────────────────────────── */
 
 @keyframes shimmer {
   0%   { background-position: -200% center; }

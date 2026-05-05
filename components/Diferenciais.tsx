@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import { Zap, Microscope, Heart, ShieldCheck, Award } from 'lucide-react'
+import { motion } from 'framer-motion'
+import FadeIn, { StaggerGroup, StaggerItem } from './FadeIn'
 
 const items = [
   {
@@ -37,85 +38,91 @@ const items = [
 ]
 
 export default function Diferenciais() {
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal').forEach((el) => {
-              el.classList.add('visible')
-            })
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section id="diferenciais" className="bg-vit-white section-padding" ref={sectionRef}>
+    <section id="diferenciais" className="bg-vit-white section-padding">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
-          <p className="reveal eyebrow mb-4">Por que a Vittaze</p>
-          <h2 className="reveal reveal-delay-1 heading-lg text-vit-preto">
-            Diferenciais que{' '}
-            <span className="font-heading italic">fazem a diferença</span>
-          </h2>
-          <div className="reveal reveal-delay-2 divider-gold mx-auto mt-6" />
+          <FadeIn>
+            <p className="eyebrow mb-4">Por que a Vittaze</p>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <h2 className="heading-lg text-vit-preto">
+              Diferenciais que{' '}
+              <span className="font-heading italic">fazem a diferença</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <div className="divider-gold mx-auto mt-6" />
+          </FadeIn>
         </div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-          {items.map((item, i) => {
+        {/* Cards */}
+        <StaggerGroup stagger={0.09} delayChildren={0.05} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+          {items.map((item) => {
             const Icon = item.icon
             return (
-              <div
-                key={item.title}
-                className={`reveal reveal-delay-${Math.min(i + 1, 5)} group card-premium flex flex-col gap-5`}
-              >
-                {/* Icon */}
-                <div className="w-12 h-12 rounded-xl bg-vit-bege/60 flex items-center justify-center group-hover:bg-vit-taupe/20 transition-colors duration-300">
-                  <Icon size={22} strokeWidth={1.5} className="text-vit-cinza group-hover:text-vit-taupe transition-colors duration-300" />
-                </div>
+              <StaggerItem key={item.title}>
+                <motion.div
+                  className="group card-premium flex flex-col gap-5 h-full transition-shadow duration-300 hover:shadow-premium"
+                  whileHover={{ y: -6 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+                >
+                  {/* Icon */}
+                  <motion.div
+                    className="w-12 h-12 rounded-xl bg-vit-bege/60 group-hover:bg-vit-taupe/20 flex items-center justify-center transition-colors duration-300"
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                  >
+                    <Icon
+                      size={22}
+                      strokeWidth={1.5}
+                      className="text-vit-cinza group-hover:text-vit-taupe transition-colors duration-300"
+                    />
+                  </motion.div>
 
-                {/* Line */}
-                <div className="h-px w-8 bg-vit-bege group-hover:bg-vit-taupe transition-colors duration-300" />
+                  {/* Animated underline */}
+                  <motion.div
+                    className="h-px bg-vit-bege group-hover:bg-vit-taupe transition-colors duration-300"
+                    initial={{ width: 32 }}
+                    whileHover={{ width: 48 }}
+                  />
 
-                {/* Text */}
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-heading text-xl font-medium text-vit-preto leading-tight">
-                    {item.title}
-                  </h3>
-                  <p className="body-md text-vit-cinza/80 leading-relaxed text-sm">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
+                  <div className="flex flex-col gap-2 flex-1">
+                    <h3 className="font-heading text-xl font-medium text-vit-preto leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="body-md text-vit-cinza/80 text-sm leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              </StaggerItem>
             )
           })}
-        </div>
+        </StaggerGroup>
 
-        {/* Bottom strip */}
-        <div className="reveal mt-20 p-8 rounded-2xl bg-vit-preto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-center md:text-left">
-            <p className="font-heading text-2xl font-light text-vit-white">
+        {/* Bottom CTA strip */}
+        <FadeIn delay={0.1} className="mt-20">
+          <div className="p-8 rounded-2xl bg-vit-preto flex flex-col md:flex-row items-center justify-between gap-6">
+            <p className="font-heading text-2xl font-light text-vit-white text-center md:text-left">
               Pronto para cuidar da sua saúde com{' '}
               <span className="italic gradient-text">excelência</span>?
             </p>
+            <motion.a
+              href="#contato"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+              className="btn-taupe shrink-0"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Agendar Exame
+            </motion.a>
           </div>
-          <a
-            href="#contato"
-            onClick={e => { e.preventDefault(); document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' }) }}
-            className="btn-taupe shrink-0"
-          >
-            Agendar Exame
-          </a>
-        </div>
+        </FadeIn>
       </div>
     </section>
   )
