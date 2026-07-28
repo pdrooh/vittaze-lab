@@ -10,7 +10,7 @@ const items = [
     icon: Zap,
     title: 'Resultados Rápidos',
     description:
-      'Laudo digital disponível em até 24 horas. Acesso online a qualquer hora, de qualquer lugar.',
+      'Laudo digital disponível em até 72h. Acesso online a qualquer hora, de qualquer lugar.',
   },
   {
     num: '02',
