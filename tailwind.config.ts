@@ -54,6 +54,9 @@ const config: Config = {
         'card':    '0 4px 30px rgba(35, 35, 35, 0.08)',
         'glass':   '0 8px 32px 0 rgba(35, 35, 35, 0.12)',
       },
+      transitionDuration: {
+        '400': '400ms',
+      },
     },
   },
   plugins: [],

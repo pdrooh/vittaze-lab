@@ -1,6 +1,6 @@
 'use client'
 
-import { FlaskConical, HeartPulse, Activity, Stethoscope, Building2, Home, ArrowRight } from 'lucide-react'
+import { FlaskConical, HeartPulse, Activity, Stethoscope, Building2, Home, ArrowUpRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import FadeIn, { StaggerGroup, StaggerItem } from './FadeIn'
 
@@ -84,63 +84,90 @@ export default function Servicos() {
             return (
               <StaggerItem key={service.title}>
                 <motion.div
-                  className={`group relative rounded-2xl overflow-hidden cursor-pointer h-full transition-shadow duration-300 ${
-                    service.highlight
-                      ? 'bg-vit-preto hover:shadow-premium'
-                      : 'bg-vit-white border border-vit-bege/70 hover:shadow-premium'
+                  className={`group relative rounded-2xl overflow-hidden h-full ${
+                    service.highlight ? 'bg-vit-preto' : 'bg-vit-white border border-vit-bege/65'
                   }`}
-                  whileHover={{ y: -7 }}
+                  style={!service.highlight ? {
+                    boxShadow: '0 1px 3px rgba(35,35,35,0.05), inset 0 1px 0 rgba(255,255,255,0.9)'
+                  } : {
+                    boxShadow: '0 4px 24px rgba(35,35,35,0.18), inset 0 1px 0 rgba(220,216,207,0.06)'
+                  }}
+                  whileHover={{
+                    y: -8,
+                    boxShadow: service.highlight
+                      ? '0 24px 56px rgba(35,35,35,0.3), inset 0 1px 0 rgba(220,216,207,0.08)'
+                      : '0 20px 48px rgba(35,35,35,0.12), inset 0 1px 0 rgba(255,255,255,0.9)'
+                  }}
                   transition={{ type: 'spring', stiffness: 280, damping: 22 }}
                 >
-                  <div className="p-8 flex flex-col gap-6 h-full">
+                  {/* Top accent stripe */}
+                  <div className={`h-px w-full ${
+                    service.highlight
+                      ? 'bg-gradient-to-r from-vit-taupe/70 via-vit-bege/30 to-transparent'
+                      : 'bg-gradient-to-r from-vit-bege via-vit-taupe/15 to-transparent'
+                  }`} />
+
+                  <div className="p-7 flex flex-col gap-6 h-full">
                     {/* Icon row */}
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-start justify-between">
                       <motion.div
                         className={`w-11 h-11 rounded-xl flex items-center justify-center ${
-                          service.highlight ? 'bg-vit-taupe/30' : 'bg-vit-bege/70'
+                          service.highlight
+                            ? 'bg-gradient-to-br from-vit-taupe/40 to-vit-taupe/15'
+                            : 'bg-gradient-to-br from-vit-bege/80 to-vit-bege/30'
                         }`}
-                        whileHover={{ scale: 1.12, rotate: 5 }}
+                        whileHover={{ scale: 1.1, rotate: -5 }}
                         transition={{ type: 'spring', stiffness: 400, damping: 15 }}
                       >
                         <Icon
-                          size={20}
+                          size={19}
                           strokeWidth={1.5}
                           className={service.highlight ? 'text-vit-bege' : 'text-vit-cinza group-hover:text-vit-taupe transition-colors duration-300'}
                         />
                       </motion.div>
 
-                      <motion.div
-                        className="opacity-0 group-hover:opacity-100"
-                        initial={{ x: -8 }}
-                        whileHover={{ x: 0 }}
-                        transition={{ duration: 0.25 }}
-                      >
-                        <ArrowRight size={16} className="text-vit-taupe" />
-                      </motion.div>
+                      <div className={`w-7 h-7 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ${
+                        service.highlight ? 'bg-vit-taupe/20' : 'bg-vit-bege/70'
+                      }`}>
+                        <ArrowUpRight
+                          size={13}
+                          className={service.highlight ? 'text-vit-bege' : 'text-vit-taupe'}
+                        />
+                      </div>
                     </div>
 
                     {/* Text */}
                     <div className="flex flex-col gap-2 flex-1">
-                      <h3 className={`font-heading text-xl font-medium leading-tight ${service.highlight ? 'text-vit-white' : 'text-vit-preto'}`}>
+                      <h3 className={`font-heading text-xl font-medium leading-tight ${
+                        service.highlight ? 'text-vit-white' : 'text-vit-preto'
+                      }`}>
                         {service.title}
                       </h3>
-                      <p className={`text-sm leading-relaxed font-light ${service.highlight ? 'text-vit-white/55' : 'text-vit-cinza/80'}`}>
+                      <p className={`text-sm leading-relaxed font-light ${
+                        service.highlight ? 'text-vit-white/50' : 'text-vit-cinza/75'
+                      }`}>
                         {service.description}
                       </p>
                     </div>
 
                     {/* Animated bottom line */}
                     <motion.div
-                      className={`h-px ${service.highlight ? 'bg-vit-taupe/50' : 'bg-vit-bege'}`}
+                      className={`h-px ${
+                        service.highlight
+                          ? 'bg-gradient-to-r from-vit-taupe/50 to-transparent'
+                          : 'bg-gradient-to-r from-vit-bege to-transparent'
+                      }`}
                       initial={{ scaleX: 0, originX: 0 }}
                       whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.4, ease: 'easeOut' }}
+                      transition={{ duration: 0.45, ease: 'easeOut' }}
                     />
                   </div>
 
-                  {/* Highlight: decorative corner */}
                   {service.highlight && (
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-vit-taupe/10 rounded-bl-full pointer-events-none" />
+                    <>
+                      <div className="absolute top-0 right-0 w-28 h-28 bg-vit-taupe/10 rounded-bl-full pointer-events-none" />
+                      <div className="absolute bottom-0 left-0 w-20 h-20 bg-vit-cinza/8 blur-3xl rounded-full pointer-events-none" />
+                    </>
                   )}
                 </motion.div>
               </StaggerItem>

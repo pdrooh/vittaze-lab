@@ -103,7 +103,7 @@ export default function Sobre() {
                     whileHover={{ x: 4, borderColor: 'rgba(160,149,140,0.35)' }}
                     transition={{ type: 'spring', stiffness: 300, damping: 22 }}
                   >
-                    <div className="w-1 self-stretch rounded-full bg-gradient-to-b from-vit-taupe to-vit-cinza shrink-0" />
+                    <div className="w-px self-stretch rounded-full bg-gradient-to-b from-vit-taupe via-vit-taupe/50 to-transparent shrink-0" />
                     <div>
                       <p className="eyebrow text-vit-taupe mb-1">{pillar.label}</p>
                       <p className="body-md text-vit-white/55 text-sm">{pillar.text}</p>
@@ -115,13 +115,17 @@ export default function Sobre() {
           </div>
         </div>
 
-        {/* Bottom quote */}
+        {/* Bottom brand statement */}
         <FadeIn delay={0.1} className="mt-24 text-center px-4">
-          <p className="font-heading text-2xl md:text-3xl lg:text-4xl font-light italic text-vit-white/35 max-w-3xl mx-auto leading-relaxed">
-            "O design não comunica apenas estética — comunica{' '}
-            <span className="text-vit-bege/65">preço, confiança e exclusividade.</span>"
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-vit-taupe/30" />
+            <span className="eyebrow text-vit-taupe/50">Vittaze Lab · Bauru — SP</span>
+            <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-vit-taupe/30" />
+          </div>
+          <p className="font-heading text-2xl md:text-3xl lg:text-[2.25rem] font-light italic text-vit-white/30 max-w-3xl mx-auto leading-relaxed">
+            "Saúde com precisão,{' '}
+            <span className="text-vit-bege/60">cuidado com sofisticação."</span>
           </p>
-          <p className="mt-4 eyebrow text-vit-taupe/45">Identidade Vittaze Lab</p>
         </FadeIn>
       </div>
     </section>
