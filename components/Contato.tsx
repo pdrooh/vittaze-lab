@@ -11,7 +11,7 @@ const hours = [
 const contacts = [
   { icon: MessageCircle, label: 'WhatsApp', value: '(00) 00000-0000', href: 'https://wa.me/5500000000000', primary: true },
   { icon: Phone,         label: 'Telefone', value: '(00) 0000-0000',  href: 'tel:0000000000',              primary: false },
-  { icon: Mail,          label: 'E-mail',   value: 'contato@vittazelab.com.br', href: 'mailto:contato@vittazelab.com.br', primary: false },
+  { icon: Mail,          label: 'E-mail',   value: 'contato@vittazelab.com', href: 'mailto:contato@vittazelab.com', primary: false },
 ]
 
 export default function Contato() {
