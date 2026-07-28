@@ -37,14 +37,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <div className="flex flex-col leading-none mb-6">
-              <span className="font-heading text-2xl font-light tracking-[0.18em] text-vit-white">
-                VITTAZE
-              </span>
-              <span className="font-body text-[9px] tracking-[0.45em] uppercase text-vit-taupe mt-0.5">
-                LAB
-              </span>
-            </div>
+            <img
+              src="/images/logo-white.png"
+              alt="Vittaze Lab · Laboratório de Análises Clínicas"
+              className="h-10 w-auto object-contain object-left mb-6 opacity-85"
+            />
 
             <p className="font-body text-sm text-vit-white/40 leading-relaxed max-w-xs mb-8">
               Excelência em diagnósticos clínicos com sofisticação, precisão e tecnologia avançada. Cuidando da sua saúde com dedicação.

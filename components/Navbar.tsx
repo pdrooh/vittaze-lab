@@ -62,15 +62,14 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={() => handleNav('#hero')}
-            className="flex flex-col leading-none group"
             aria-label="Vittaze Lab — início"
+            className="group flex items-center"
           >
-            <span className="font-heading text-2xl font-light tracking-[0.18em] text-vit-white group-hover:text-vit-bege transition-colors duration-300">
-              VITTAZE
-            </span>
-            <span className="font-body text-[9px] tracking-[0.45em] uppercase text-vit-taupe mt-0.5">
-              LAB
-            </span>
+            <img
+              src="/images/logo-white.png"
+              alt="Vittaze Lab"
+              className="h-9 w-auto object-contain object-left opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+            />
           </button>
 
           {/* Desktop links */}
@@ -168,7 +167,7 @@ export default function Navbar() {
               onClick={() => handleNav('#resultados')}
               className="btn-outline-light text-sm"
             >
-              Meus Resultados
+              Ver Resultados
             </button>
           </div>
         </div>
