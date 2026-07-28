@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
 import clsx from 'clsx'
 
 const navLinks = [
@@ -65,10 +66,14 @@ export default function Navbar() {
             aria-label="Vittaze Lab — início"
             className="group flex items-center"
           >
-            <img
+            <Image
               src="/images/logo-white.png"
               alt="Vittaze Lab"
+              width={80}
+              height={80}
               className="h-20 w-auto object-contain object-left opacity-95 group-hover:opacity-100 transition-opacity duration-300"
+              priority
+              style={{ width: 'auto' }}
             />
           </button>
 

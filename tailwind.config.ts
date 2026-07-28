@@ -16,8 +16,8 @@ const config: Config = {
         'vit-white': '#F8F6F3',
       },
       fontFamily: {
-        heading: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        body:    ['"DM Sans"', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-cormorant)', 'Georgia', 'serif'],
+        body:    ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-up':    'fadeUp 0.7s ease forwards',

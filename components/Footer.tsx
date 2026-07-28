@@ -1,4 +1,5 @@
 import { Instagram, MessageCircle } from 'lucide-react'
+import Image from 'next/image'
 
 const footerLinks = [
   {
@@ -37,10 +38,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <img
+            <Image
               src="/images/logo-white.png"
               alt="Vittaze Lab · Laboratório de Análises Clínicas"
+              width={144}
+              height={144}
               className="h-36 w-auto object-contain object-left mb-4 opacity-95"
+              style={{ width: 'auto' }}
             />
 
             <p className="font-body text-sm text-vit-white/40 leading-relaxed max-w-xs mb-8">
