@@ -9,8 +9,8 @@ const hours = [
 ]
 
 const contacts = [
-  { icon: MessageCircle, label: 'WhatsApp', value: '(00) 00000-0000', href: 'https://wa.me/5500000000000', primary: true },
-  { icon: Phone,         label: 'Telefone', value: '(00) 0000-0000',  href: 'tel:0000000000',              primary: false },
+  { icon: MessageCircle, label: 'WhatsApp', value: '(14) 91005-2152', href: 'https://wa.me/5514910052152', primary: true },
+  { icon: Phone,         label: 'Telefone', value: '(14) 91005-2152', href: 'tel:+5514910052152',           primary: false },
   { icon: Mail,          label: 'E-mail',   value: 'contato@vittazelab.com', href: 'mailto:contato@vittazelab.com', primary: false },
 ]
 
@@ -163,7 +163,7 @@ export default function Contato() {
         {/* Big WhatsApp CTA */}
         <FadeIn delay={0.1} className="mt-12">
           <motion.a
-            href="https://wa.me/5500000000000"
+            href="https://wa.me/5514910052152"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl bg-gradient-to-r from-vit-taupe/20 to-vit-cinza/20 border border-vit-taupe/20 p-8"

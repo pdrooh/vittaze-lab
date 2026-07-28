@@ -1,6 +1,6 @@
 'use client'
 
-import { FlaskConical, HeartPulse, Activity, Stethoscope, Building2, Home, ArrowUpRight } from 'lucide-react'
+import { FlaskConical, HeartPulse, Activity, Stethoscope, Home, ArrowUpRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import FadeIn, { StaggerGroup, StaggerItem } from './FadeIn'
 
@@ -30,14 +30,7 @@ const services = [
     icon: Stethoscope,
     title: 'Análises Especializadas',
     description:
-      'Genética molecular, imunologia avançada, toxicologia e outras análises de alta complexidade.',
-    highlight: false,
-  },
-  {
-    icon: Building2,
-    title: 'Atendimento Empresarial',
-    description:
-      'Soluções corporativas em saúde ocupacional, exames admissionais e programas de bem-estar para equipes.',
+      'Genética molecular, imunologia avançada e outras análises de alta complexidade.',
     highlight: false,
   },
   {
@@ -181,7 +174,7 @@ export default function Servicos() {
             Não encontrou o que procura? Fale com nossa equipe.
           </p>
           <motion.a
-            href="https://wa.me/5500000000000"
+            href="https://wa.me/5514910052152"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline inline-flex"
