@@ -1,13 +1,11 @@
 'use client'
 
-import { MapPin, Clock, Phone, Instagram, Facebook, MessageCircle, Mail } from 'lucide-react'
+import { MapPin, Clock, Phone, Instagram, MessageCircle, Mail } from 'lucide-react'
 import { motion } from 'framer-motion'
 import FadeIn, { StaggerGroup, StaggerItem } from './FadeIn'
 
 const hours = [
-  { day: 'Segunda a Sexta', time: '07h00 – 17h00' },
-  { day: 'Sábado',          time: '07h00 – 12h00' },
-  { day: 'Domingo',         time: 'Fechado' },
+  { day: 'Segunda a Sexta', time: '07h – 12h  ·  14h – 16h' },
 ]
 
 const contacts = [
@@ -105,11 +103,11 @@ export default function Contato() {
             </div>
             <div>
               <p className="font-body text-sm text-vit-white/70 leading-relaxed">
-                Rua das Clínicas, 000 — Sala 101<br />
-                Bairro Nobre, Cidade — Estado<br />
-                CEP 00000-000
+                Alameda Dr. Octávio Pinheiro Brisolla, Qd. 17<br />
+                Vila Nova Cidade Universitária<br />
+                Bauru — SP · 17012-191
               </p>
-              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer"
+              <a href="https://maps.google.com/?q=Alameda+Dr.+Octávio+Pinheiro+Brisolla,+Quadra+17,+Vila+Nova+Cidade+Universitária,+Bauru,+SP" target="_blank" rel="noopener noreferrer"
                 className="mt-3 inline-flex items-center gap-2 font-body text-xs tracking-widest uppercase text-vit-taupe hover:text-vit-bege transition-colors">
                 Ver no mapa ↗
               </a>
@@ -141,8 +139,7 @@ export default function Contato() {
               <p className="eyebrow text-vit-taupe">Redes sociais</p>
               <div className="flex gap-3">
                 {[
-                  { icon: Instagram, href: 'https://instagram.com/vittazelab', label: 'Instagram' },
-                  { icon: Facebook,  href: 'https://facebook.com/vittazelab',  label: 'Facebook'  },
+                  { icon: Instagram, href: 'https://www.instagram.com/vittazelab_/', label: 'Instagram' },
                 ].map(({ icon: Icon, href, label }) => (
                   <motion.a
                     key={label}

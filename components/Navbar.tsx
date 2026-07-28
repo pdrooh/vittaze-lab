@@ -68,7 +68,7 @@ export default function Navbar() {
             <img
               src="/images/logo-white.png"
               alt="Vittaze Lab"
-              className="h-9 w-auto object-contain object-left opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+              className="h-12 w-auto object-contain object-left opacity-90 group-hover:opacity-100 transition-opacity duration-300"
             />
           </button>
 

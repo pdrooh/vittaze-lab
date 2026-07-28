@@ -207,7 +207,7 @@ export default function Hero() {
             { value: '98%',    label: 'Precisão diagnóstica' },
             { value: '24h',    label: 'Resultados online' },
             { value: '50+',    label: 'Tipos de exames' },
-            { value: '2025',    label: 'Inauguração' },
+            { value: '2026',    label: 'Inauguração' },
           ].map(({ value, label }, i) => (
             <motion.div
               key={label}

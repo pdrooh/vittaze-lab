@@ -1,4 +1,4 @@
-import { Instagram, Facebook, MessageCircle } from 'lucide-react'
+import { Instagram, MessageCircle } from 'lucide-react'
 
 const footerLinks = [
   {
@@ -40,7 +40,7 @@ export default function Footer() {
             <img
               src="/images/logo-white.png"
               alt="Vittaze Lab · Laboratório de Análises Clínicas"
-              className="h-10 w-auto object-contain object-left mb-6 opacity-85"
+              className="h-14 w-auto object-contain object-left mb-6 opacity-90"
             />
 
             <p className="font-body text-sm text-vit-white/40 leading-relaxed max-w-xs mb-8">
@@ -50,9 +50,8 @@ export default function Footer() {
             {/* Social */}
             <div className="flex gap-3">
               {[
-                { icon: Instagram,     href: 'https://instagram.com/vittazelab', label: 'Instagram' },
-                { icon: Facebook,      href: 'https://facebook.com/vittazelab',  label: 'Facebook'  },
-                { icon: MessageCircle, href: 'https://wa.me/5500000000000',       label: 'WhatsApp'  },
+                { icon: Instagram,     href: 'https://www.instagram.com/vittazelab_/', label: 'Instagram' },
+                { icon: MessageCircle, href: 'https://wa.me/5500000000000',             label: 'WhatsApp'  },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
