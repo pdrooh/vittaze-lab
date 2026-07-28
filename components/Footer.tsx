@@ -40,7 +40,7 @@ export default function Footer() {
             <img
               src="/images/logo-white.png"
               alt="Vittaze Lab · Laboratório de Análises Clínicas"
-              className="h-14 w-auto object-contain object-left mb-6 opacity-90"
+              className="h-36 w-auto object-contain object-left mb-4 opacity-95"
             />
 
             <p className="font-body text-sm text-vit-white/40 leading-relaxed max-w-xs mb-8">

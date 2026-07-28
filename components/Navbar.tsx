@@ -54,8 +54,8 @@ export default function Navbar() {
         className={clsx(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
           scrolled
-            ? 'glass-dark py-3 shadow-glass'
-            : 'bg-transparent py-5'
+            ? 'glass-dark py-2 shadow-glass'
+            : 'bg-transparent py-4'
         )}
       >
         <nav className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
@@ -68,7 +68,7 @@ export default function Navbar() {
             <img
               src="/images/logo-white.png"
               alt="Vittaze Lab"
-              className="h-12 w-auto object-contain object-left opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+              className="h-20 w-auto object-contain object-left opacity-95 group-hover:opacity-100 transition-opacity duration-300"
             />
           </button>
 
