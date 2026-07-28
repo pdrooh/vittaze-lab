@@ -167,7 +167,7 @@ export default function Hero() {
                 label: 'Fale Conosco',
                 icon: MessageCircle,
                 className: 'btn-outline-light',
-                href: 'https://wa.me/5500000000000',
+                href: 'https://wa.me/5514910052152',
                 external: true,
               },
             ].map(({ label, icon: Icon, className, href, external }) => (
